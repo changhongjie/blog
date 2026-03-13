@@ -20,17 +20,10 @@ const posts = (await getCollection('blog'))
 		<div class="grid gap-6 md:grid-cols-2">
 			{posts.map((post) => (
 				<a href={`/blog/${post.id}`} class="group block">
-					<Card class="overflow-hidden border-none shadow-none bg-transparent transition-all hover:bg-muted/50">
-						<div class="aspect-video overflow-hidden rounded-lg">
-							<img 
-								src={post.data.heroImage} 
-								alt={post.data.title} 
-								class="h-full w-full object-cover transition-transform group-hover:scale-105" 
-							/>
-						</div>
-						<CardHeader class="px-0 pt-4">
-							<div class="flex items-center gap-2">
-								<span class="text-xs font-medium uppercase text-muted-foreground">
+					<Card class="overflow-hidden border border-muted-foreground/10 bg-muted/10 transition-all hover:bg-muted/30">
+						<CardHeader class="px-6 py-6">
+							<div class="flex items-center gap-2 mb-2">
+								<span class="text-xs font-medium uppercase text-muted-foreground bg-muted/50 px-2 py-0.5 rounded">
 									{post.data.category}
 								</span>
 								<span class="text-xs text-muted-foreground">•</span>
@@ -43,10 +36,10 @@ const posts = (await getCollection('blog'))
 									</span>
 								)}
 							</div>
-							<CardTitle class="line-clamp-2 text-xl leading-tight">
+							<CardTitle class="line-clamp-2 text-xl leading-tight font-bold">
 								{post.data.title}
 							</CardTitle>
-							<CardDescription class="line-clamp-2">
+							<CardDescription class="line-clamp-2 mt-2">
 								{post.data.description}
 							</CardDescription>
 						</CardHeader>

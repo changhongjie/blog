@@ -1,27 +1,25 @@
 ---
-import { MobileNav } from './MobileNav';
+import Breadcrumbs from './Breadcrumbs.astro';
 ---
 
 <header class="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-	<div class="container mx-auto flex h-16 items-center justify-between px-4">
-		<div class="flex items-center gap-6 md:gap-10">
-			<a href="/" class="flex items-center space-x-2">
+	<div class="container mx-auto flex h-16 items-center px-4">
+		<div class="flex w-full items-center justify-between">
+			<a href="/" class="flex items-center space-x-2 shrink-0">
 				<span class="inline-block font-bold text-xl">HJ Blog</span>
 			</a>
-			<nav class="hidden gap-6 md:flex">
-				<a href="/" class="flex items-center text-sm font-medium text-muted-foreground hover:text-foreground">
-					Home
-				</a>
-				<a href="/blog" class="flex items-center text-sm font-medium text-muted-foreground hover:text-foreground">
+			<div class="hidden md:flex ml-8">
+				<Breadcrumbs />
+			</div>
+			<nav class="flex items-center gap-4 ml-auto">
+				<a href="/blog" class="text-sm font-medium text-muted-foreground hover:text-foreground">
 					Blog
 				</a>
 			</nav>
 		</div>
-		<div class="flex flex-1 items-center justify-end space-x-4">
-			<nav class="flex items-center space-x-1">
-				<MobileNav client:load />
-			</nav>
-		</div>
 	</div>
 </header>
+<div class="container mx-auto px-4 py-2 md:hidden border-b bg-muted/20">
+	<Breadcrumbs />
+</div>
 
