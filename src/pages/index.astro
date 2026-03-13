@@ -1,0 +1,69 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { Button } from '@/components/ui/button';
+import { Card, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
+import { ArrowRight, Coffee, Plane, BrainCircuit } from 'lucide-react';
+---
+
+<Layout title="HJ Blog - Personal Blog" description="Data Science, ML, and Hobbies.">
+	<div class="space-y-16">
+		<section class="space-y-6">
+			<div class="space-y-2">
+				<h1 class="text-5xl font-extrabold tracking-tight md:text-7xl">
+					Data Science, <br />
+					ML, & Hobbies.
+				</h1>
+				<p class="max-w-xl text-xl text-muted-foreground">
+					Welcome to my personal blog. I explore the intersections of data science, machine learning, and my passions for coffee and travel.
+				</p>
+			</div>
+			<div class="flex gap-4">
+				<a href="/blog">
+					<Button size="lg" class="gap-2">
+						Read Blog <ArrowRight class="h-4 w-4" />
+					</Button>
+				</a>
+				<a href="#">
+					<Button size="lg" variant="outline">About Me</Button>
+				</a>
+			</div>
+		</section>
+
+		<section class="grid gap-8 md:grid-cols-3">
+			<Card class="border-none bg-muted/30 shadow-none">
+				<CardHeader>
+					<div class="mb-4 inline-block rounded-lg bg-blue-100 p-2 text-blue-700">
+						<BrainCircuit class="h-6 w-6" />
+					</div>
+					<CardTitle>Data Science</CardTitle>
+					<CardDescription>
+						Deep dives into machine learning models and data analysis techniques.
+					</CardDescription>
+				</CardHeader>
+			</Card>
+			<Card class="border-none bg-muted/30 shadow-none">
+				<CardHeader>
+					<div class="mb-4 inline-block rounded-lg bg-yellow-100 p-2 text-yellow-700">
+						<Coffee class="h-6 w-6" />
+					</div>
+					<CardTitle>Coffee</CardTitle>
+					<CardDescription>
+						Exploring specialty coffee, brewing methods, and local roasters.
+					</CardDescription>
+				</CardHeader>
+			</Card>
+			<Card class="border-none bg-muted/30 shadow-none">
+				<CardHeader>
+					<div class="mb-4 inline-block rounded-lg bg-green-100 p-2 text-green-700">
+						<Plane class="h-6 w-6" />
+					</div>
+					<CardTitle>Travels</CardTitle>
+					<CardDescription>
+						Capturing moments from my journeys around the world.
+					</CardDescription>
+				</CardHeader>
+			</Card>
+		</section>
+	</div>
+</Layout>
+

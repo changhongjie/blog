@@ -1,0 +1,59 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { getCollection } from 'astro:content';
+import { format } from 'date-fns';
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+
+const posts = (await getCollection('blog'))
+	.filter((post) => import.meta.env.DEV || !post.data.draft)
+	.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+---
+
+<Layout title="Blog - HJ Blog" description="Read my latest thoughts on Data Science, ML, and my hobbies.">
+	<div class="space-y-8">
+		<div class="space-y-2">
+			<h1 class="text-4xl font-bold tracking-tight">Blog</h1>
+			<p class="text-muted-foreground">
+				Writing about data science, machine learning, and my travels.
+			</p>
+		</div>
+		<div class="grid gap-6 md:grid-cols-2">
+			{posts.map((post) => (
+				<a href={`/blog/${post.id}`} class="group block">
+					<Card class="overflow-hidden border-none shadow-none bg-transparent transition-all hover:bg-muted/50">
+						<div class="aspect-video overflow-hidden rounded-lg">
+							<img 
+								src={post.data.heroImage} 
+								alt={post.data.title} 
+								class="h-full w-full object-cover transition-transform group-hover:scale-105" 
+							/>
+						</div>
+						<CardHeader class="px-0 pt-4">
+							<div class="flex items-center gap-2">
+								<span class="text-xs font-medium uppercase text-muted-foreground">
+									{post.data.category}
+								</span>
+								<span class="text-xs text-muted-foreground">•</span>
+								<time class="text-xs text-muted-foreground">
+									{format(post.data.pubDate, 'MMMM d, yyyy')}
+								</time>
+								{post.data.draft && (
+									<span class="ml-auto rounded-full bg-yellow-100 px-2 py-0.5 text-[10px] font-medium text-yellow-800">
+										Draft
+									</span>
+								)}
+							</div>
+							<CardTitle class="line-clamp-2 text-xl leading-tight">
+								{post.data.title}
+							</CardTitle>
+							<CardDescription class="line-clamp-2">
+								{post.data.description}
+							</CardDescription>
+						</CardHeader>
+					</Card>
+				</a>
+			))}
+		</div>
+	</div>
+</Layout>
+

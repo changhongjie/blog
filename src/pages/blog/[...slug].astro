@@ -1,0 +1,51 @@
+---
+import { type CollectionEntry, getCollection, render } from 'astro:content';
+import Layout from '../../layouts/Layout.astro';
+import { format } from 'date-fns';
+
+export async function getStaticPaths() {
+	const posts = (await getCollection('blog'))
+		.filter((post) => import.meta.env.DEV || !post.data.draft);
+	return posts.map((post) => ({
+		params: { slug: post.id },
+		props: post,
+	}));
+}
+type Props = CollectionEntry<'blog'>;
+
+const post = Astro.props;
+const { Content } = await render(post);
+---
+
+<Layout title={post.data.title} description={post.data.description}>
+	<article class="prose prose-zinc dark:prose-invert mx-auto max-w-none">
+		<header class="mb-8 space-y-4">
+			<div class="flex items-center gap-2">
+				<span class="text-sm font-medium uppercase tracking-wider text-muted-foreground">
+					{post.data.category}
+				</span>
+				<span class="text-sm text-muted-foreground">•</span>
+				<time class="text-sm text-muted-foreground">
+					{format(post.data.pubDate, 'MMMM d, yyyy')}
+				</time>
+			</div>
+			<h1 class="mb-2 text-4xl font-extrabold tracking-tight md:text-5xl">
+				{post.data.title}
+			</h1>
+			<p class="text-xl text-muted-foreground">
+				{post.data.description}
+			</p>
+			{post.data.heroImage && (
+				<img 
+					src={post.data.heroImage} 
+					alt={post.data.title} 
+					class="aspect-video w-full rounded-xl object-cover shadow-lg" 
+				/>
+			)}
+		</header>
+		<div class="mt-8 prose-img:rounded-xl prose-headings:font-bold prose-a:text-blue-600">
+			<Content />
+		</div>
+	</article>
+</Layout>
+
