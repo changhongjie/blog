@@ -1,4 +1,5 @@
 ---
+import { Github, Linkedin, Twitter } from 'lucide-react';
 ---
 
 <footer class="border-t py-6">
@@ -6,6 +7,20 @@
 		<p class="text-center text-sm leading-loose text-muted-foreground md:text-left">
 			Built with Astro, Tailwind, and Shadcn.
 		</p>
+		<div class="flex items-center gap-4">
+			<a href="https://github.com/changhongjie" target="_blank" rel="noopener noreferrer" class="text-muted-foreground hover:text-foreground transition-colors">
+				<Github className="h-5 w-5" />
+				<span class="sr-only">GitHub</span>
+			</a>
+			<a href="https://www.linkedin.com/in/hongjie-chang" target="_blank" rel="noopener noreferrer" class="text-muted-foreground hover:text-foreground transition-colors">
+				<Linkedin className="h-5 w-5" />
+				<span class="sr-only">LinkedIn</span>
+			</a>
+			<a href="https://x.com/hongjielalalala" target="_blank" rel="noopener noreferrer" class="text-muted-foreground hover:text-foreground transition-colors">
+				<Twitter className="h-5 w-5" />
+				<span class="sr-only">X</span>
+			</a>
+		</div>
 	</div>
 </footer>
 
